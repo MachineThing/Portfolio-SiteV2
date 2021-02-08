@@ -12,6 +12,6 @@
 *.swp
 __pycache__/
 local_settings.py
-media/
-static/
+/media/
+/static/
 db.sqlite3

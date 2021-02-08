@@ -10,7 +10,7 @@ on:
     branches: [ development ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest # Closest thing to Debian
     steps:
     - uses: actions/checkout@v2

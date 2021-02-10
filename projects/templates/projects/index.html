@@ -1,15 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Mason's Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </head>
   <body>
-      <h1>Mason is a web developer</h1>
-      <p>Hello my fellow world!</p>
-      <h3>Listen to some tunes</h3>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/8GW6sLrK40k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <p><b>This page is temporary!</b></p>
+    <div class="dblock grass">
+      <h1>Hello! My name is <span class="popout">Mason Fisher</span><br />I'm a <span class="popout">backend developer</span></h1>
+      <p>Mason Fisher is a {{ age }} year old student at Gull Lake High School.
+        He was born on Saint Patrick's Day (March 17th) 2004.
+        Mason is a programmer that programs with the Python programming language,
+        which is a powerful and fast programming language which is widely used in the world.</p>
+    </div>
   </body>
 </html>

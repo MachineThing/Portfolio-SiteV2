@@ -2,14 +2,19 @@ html, body {
   margin: 0px;
   display: block;
   font-family: sans-serif;
-  color: #000000dd;
+  background-color: #201020;
+  color: #dddddd;
 }
 h1 {
   text-align: center;
 }
 .dblock {
+  background-color: #00000088;
   margin: 0px;
   padding: 4rem 2rem;
+}
+.main {
+  margin: 2rem 1rem;
 }
 .grass {
   /* TODO: Make this display my contribution chart */
@@ -17,7 +22,4 @@ h1 {
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
-}
-.popout {
-  color: #000000ff;
 }

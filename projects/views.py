@@ -41,13 +41,13 @@ def contribCal(request):
 
     # Image handler
     # Image settings
-    square_size = 30    # Size of the squares
-    square_margin = 12  # Spacing between squares (Multiplied by 2)
+    square_size = 80        # Size of the squares
+    square_margin = 32      # Spacing between squares (Multiplied by 2)
     color = (200, 100, 200) # Color of the squares
-    maxt = 128          # Maximum transparency
-    mint = 48           # Minimum transparency
-    zert = 28           # Zero contrib transparency
-    maxnum = 0          # Maximum number (Leave at 0)
+    maxt = 128              # Maximum transparency
+    mint = 48               # Minimum transparency
+    zert = 28               # Zero contrib transparency
+    maxnum = 0              # Maximum number (Leave at 0)
 
     for ccx in contribCal:
         for ccy in ccx['contributionDays']:

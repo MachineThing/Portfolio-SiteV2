@@ -1,3 +1,5 @@
+from django.core.files.base import ContentFile
+from projects.models import GrassGraph
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
@@ -107,4 +109,5 @@ def contribCal(request):
             )
     imgBuff = BytesIO()
     img.save(imgBuff, "PNG")
-    return HttpResponse(imgBuff.getvalue(), content_type='image/png')
+    grass = GrassGraph.manager.create_grass(ContentFile(imgBuff.getvalue(), 'imgbuff.png'))
+    return HttpResponse(grass.data, content_type='image/png')

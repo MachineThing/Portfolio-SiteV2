@@ -35,6 +35,10 @@ jobs:
         envkey_PG_PASSWORD: postgres
         envkey_PG_DATABASE: postgres
         file_name: .env
+    - name: Migrations
+      run: |
+        python manage.py makemigrations
+        python manage.py migrate
     - name: Check
       run: |
         python manage.py check

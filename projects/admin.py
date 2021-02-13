@@ -1,3 +1,5 @@
 from django.contrib import admin
+# Models
+from projects.models import GrassGraph
 
-# Register your models here.
+admin.site.register(GrassGraph)

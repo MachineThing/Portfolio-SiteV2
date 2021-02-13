@@ -2,14 +2,6 @@ from datetime import datetime
 from django.db import models
 
 class GGManager(models.Manager):
-    def get_grass(self, year=None, week=None):
-        date = datetime.today()
-        if year == None:
-            year = date.strftime("%y")
-        if week == None:
-            week = date.strftime("%U")
-        pass
-
     def create_grass(self, data):
         date = datetime.today()
         grassGraph = self.create(data=data, year=date.strftime("%y"), week=date.strftime("%U"))

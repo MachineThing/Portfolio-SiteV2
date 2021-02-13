@@ -7,6 +7,7 @@ from PIL import ImageDraw
 from io import BytesIO
 from PIL import Image
 import requests
+import json
 
 def index(request):
     # Age handler
@@ -19,7 +20,6 @@ def index(request):
 def contribCal(request):
     # Contrib Graph handler
     # TODO: Minimize api requests by storing this into database
-    # TODO: Make an image out of this data
     ghScript = """
     {
     user(login:\"MachineThing\") {
@@ -35,50 +35,75 @@ def contribCal(request):
     }}
     """
     head = {'Content-Type': 'application/json', 'Authorization':'token '+settings.GITHUB_KEY}
-    contribCal = requests.post('https://api.github.com/graphql', json={'query':ghScript.replace("\n", "")}, headers=head)
+    contribCalReq = requests.post('https://api.github.com/graphql', json={'query':ghScript.replace("\n", "")}, headers=head)
 
+    contribCal = json.loads(contribCalReq.text)['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
+
+    # Image handler
     # Image settings
-    square_size = 30
-    square_margin = 12 # Multiplied by 2
-    weeks = 52
-    color = (0, 200, 0)
-    maxt = 128
+    square_size = 30    # Size of the squares
+    square_margin = 12  # Spacing between squares (Multiplied by 2)
+    color = (200, 100, 200) # Color of the squares
+    maxt = 128          # Maximum transparency
+    mint = 48           # Minimum transparency
+    zert = 28           # Zero contrib transparency
+    maxnum = 0          # Maximum number (Leave at 0)
 
-    img = Image.new("RGBA", ((square_size+square_margin)*weeks+square_margin, (square_size+square_margin)*7+square_margin), (0, 0, 0, 136))
+    for ccx in contribCal:
+        for ccy in ccx['contributionDays']:
+            if ccy['contributionCount'] > maxnum:
+                maxnum = ccy['contributionCount']
+    trat = (maxt-mint)/maxnum
+
+    # Initialize image
+    img = Image.new("RGBA", ((square_size+square_margin)*52+square_margin, (square_size+square_margin)*7+square_margin), (0, 0, 0, 136))
     imgd = ImageDraw.Draw(img)
 
     # Draw rounded squares
-    for squarex in range(square_margin, (square_size+square_margin)*weeks, square_size+square_margin):
+    ccx = -1
+    ccy = -1
+    for squarex in range(square_margin, (square_size+square_margin)*52, square_size+square_margin):
+        ccx += 1
         for squarey in range(square_margin, (square_size+square_margin)*7, square_size+square_margin):
+            # Get level
+            ccy += 1
+            level = contribCal[ccx]['contributionDays'][ccy]['contributionCount']
+            if ccy >= 6:
+                ccy = -1
+
+            if level == 0:
+                cctn = zert
+            else:
+                cctn = round(trat * level)+mint
             imgd.rectangle( # X Rectangle
                 (squarex, squarey+(square_size/4),
                 squarex+square_size, squarey+square_size-(square_size/4)),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
             imgd.rectangle( # Y Rectangle
                 (squarex+(square_size/4), squarey,
                 squarex+square_size-(square_size/4), squarey+square_size),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
             imgd.ellipse( # Upper-Left Circle
                 (squarex, squarey,
                 squarex+square_size/2, squarey+square_size/2),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
             imgd.ellipse( # Upper-Right Circle
                 (squarex+square_size/2, squarey,
                 squarex+square_size, squarey+square_size/2),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
             imgd.ellipse( # Lower-Left Circle
                 (squarex, squarey+square_size/2,
                 squarex+square_size/2, squarey+square_size),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
             imgd.ellipse( # Lower-Right Circle
                 (squarex+square_size/2, squarey+square_size/2,
                 squarex+square_size, squarey+square_size),
-                fill=(color[0], color[1], color[2], maxt)
+                fill=(color[0], color[1], color[2], cctn)
             )
     imgBuff = BytesIO()
     img.save(imgBuff, "PNG")

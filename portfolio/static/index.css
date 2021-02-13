@@ -17,8 +17,8 @@ h1 {
   margin: 2rem 1rem;
 }
 .grass {
-  /* TODO: Make this display my contribution chart */
-  background-image: graph;
+  background-image: url('/contribCalImg');
+  background-color: #000000ff; /* Handled by above image */
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;

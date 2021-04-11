@@ -18,10 +18,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Install postgresql
-      uses: harmon758/postgresql-action@v1
-      with:
-        postgresql version: '13'
     - name: Install dependencies from requirements.txt
       run: |
         python -m pip install --upgrade pip
@@ -31,9 +27,7 @@ jobs:
       with:
         envkey_SECRET_KEY: GhubActionSecKey
         envkey_GITHUB_KEY: ${{ secrets.GH_API_KEY }}
-        envkey_PG_USER: postgres
-        envkey_PG_PASSWORD: postgres
-        envkey_PG_DATABASE: postgres
+        envkey_USE_SQLITE: True
         file_name: .env
     - name: Migrations
       run: |

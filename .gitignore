@@ -14,3 +14,6 @@ __pycache__/
 local_settings.py
 /media/
 /static/
+
+# Testing
+db.sqlite3

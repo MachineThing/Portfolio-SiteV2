@@ -85,15 +85,24 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('PG_DATABASE'),
-        'USER': os.getenv('PG_USER'),
-        'PASSWORD': os.getenv('PG_PASSWORD'),
-        'HOST': '127.0.0.1'
+if os.getenv('USE_SQLITE') == 'true' and DEBUG:
+    # Only use for testing!
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        },
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('PG_DATABASE'),
+            'USER': os.getenv('PG_USER'),
+            'PASSWORD': os.getenv('PG_PASSWORD'),
+            'HOST': '127.0.0.1'
+        }
+    }
 
 
 # Password validation

@@ -25,7 +25,6 @@ def contribCal(request):
     objects = GrassGraph.manager.get_queryset().filter(year=date.strftime("%y"), week=date.strftime("%U"))
     if len(objects) == 0:
         # Contrib Graph handler
-        # TODO: Minimize api requests by storing this into database
         ghScript = """
         {
         user(login:\"MachineThing\") {

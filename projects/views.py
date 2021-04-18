@@ -18,7 +18,9 @@ def index(request):
     today_date = datetime.now(timezone(settings.TIME_ZONE))
     age = today_date.year - birth_date.year - ((today_date.month, today_date.day) < (birth_date.month, birth_date.day))
 
-    return render(request, 'projects/index.html', {'age': age})
+    bday = (today_date.month, today_date.day) == (birth_date.month, birth_date.day)
+
+    return render(request, 'projects/index.html', {'age':age, 'bday':bday})
 
 def contribCal(request):
     date = datetime.today()

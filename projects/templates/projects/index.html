@@ -12,7 +12,7 @@
   <body>
     <div class="dblock grass">
       <h1>Hello! My name is Mason Fisher<br />I'm a backend developer</h1>
-      <p>Mason Fisher is a {{ age }} year old student at Gull Lake High School.
+      <p>{% if bday %}<span title="Happy birthday Mason Fisher!">🎂</span> {% endif %}Mason Fisher is a {% if bday %}<span style="color: #ffc0cb;">{{ age }}</span> {% else %}{{ age }}{% endif %} year old student at Gull Lake High School.
         He was born on Saint Patrick's Day (March 17th) 2004.
         Mason is a programmer that programs with the Python programming language,
         which is a powerful and fast programming language which is widely used in the world.</p>

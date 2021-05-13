@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="dblock grass">
-      <h1>Hello! My name is Mason Fisher<br />I'm a backend developer</h1>
+      <h1 id="introtxt"></h1>
       <p>{% if bday %}<span title="Happy birthday Mason Fisher!">🎂</span> {% endif %}Mason Fisher is a {% if bday %}<span style="color: #ffc0cb;">{{ age }}</span> {% else %}{{ age }}{% endif %} year old student at Gull Lake High School.
         He was born on Saint Patrick's Day (March 17th) 2004.
         Mason is a programmer that programs with the Python programming language,
@@ -28,5 +27,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut efficitur ante
 
 Suspendisse ut odio pulvinar, semper lorem sit amet, ultrices nisl. Sed eu blandit tellus, vitae malesuada urna. Quisque tortor leo, sodales et congue ut, hendrerit a dui. Maecenas eleifend ex ut euismod facilisis. Maecenas vel hendrerit urna. Donec sit amet arcu sapien. Proin blandit pharetra nulla, eu porta eros finibus at. Ut congue libero id mi tempus molestie. Nulla nibh urna, tristique quis metus vel, egestas varius odio. Integer ac egestas eros, sed rhoncus odio. Vivamus gravida fermentum ante id malesuada. </p>
     </div>
+    <script src="https://unpkg.com/typewriter-effect/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="{% static 'intro.js' %}"></script>
   </body>
 </html>

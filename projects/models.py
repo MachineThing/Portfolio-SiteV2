@@ -11,6 +11,7 @@ class GrassGraph(models.Model):
     data = models.ImageField(upload_to='grass/')
     year = models.CharField(max_length=2)
     week = models.CharField(max_length=2)
+    id = models.BigAutoField(primary_key=True)
     manager = GGManager()
 
     def __str__(self):

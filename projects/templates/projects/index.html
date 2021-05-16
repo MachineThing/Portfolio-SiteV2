@@ -9,11 +9,45 @@
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="dblock grass">
-      <h1 id="introtxt"></h1>
+      <h1 id="introcov">Hello! My name is Mason Fisher.<br />I'm a backend web developer.
+        <h1 id="introtxt"></h1>
+      </h1>
       <p>{% if bday %}<span title="Happy birthday Mason Fisher!">🎂</span> {% endif %}Mason Fisher is a {% if bday %}<span style="color: #ffc0cb;">{{ age }}</span> {% else %}{{ age }}{% endif %} year old student at Gull Lake High School.
         He was born on Saint Patrick's Day (March 17th) 2004.
-        Mason is a programmer that programs with the Python programming language,
+        Mason is a programmer that programs in the Python programming language,
         which is a powerful and fast programming language which is widely used in the world.</p>
     </div>
     <div class="main">

@@ -7,8 +7,8 @@ var typewriter = new Typewriter(app, {
 
 typewriter.typeString('Hello!')
     .pauseFor(500)
-    .typeString(' My name is Mason Fisher')
+    .typeString(' My name is Mason Fisher.')
     .pauseFor(500)
-    .typeString('<br />I\'m a backend web developer')
+    .typeString('<br />I\'m a backend web developer.')
     .pauseFor(500)
     .start();

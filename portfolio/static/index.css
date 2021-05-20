@@ -5,9 +5,7 @@ html, body {
   font-family: 'Roboto', sans-serif;
   background-color: #201020;
   color: #dddddd;
-}
-h1 {
-  text-align: center;
+  text-align: left;
 }
 
 .dblock {
@@ -15,8 +13,8 @@ h1 {
   margin: 0px;
   padding: 4rem 2rem;
 }
-.main {
-  margin: 2rem 1rem;
+.container {
+  margin: 25px auto;
 }
 .grass {
   background-image: url('/contribCalImg');
@@ -24,6 +22,14 @@ h1 {
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.overlay {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #05050588;
+  border-radius: 25px;
+  padding: 10px;
+  text-align: left;
 }
 
 #introcov {

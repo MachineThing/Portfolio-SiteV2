@@ -37,16 +37,18 @@
       </div>
     </nav>
     <div class="dblock grass">
-      <div id="introcov">
-        <h1 id="introhid">Hello! My name is Mason Fisher.<br />I'm a backend web developer.</h1>
-        <h1 id="introtxt"></h1>
+      <div class="overlay">
+        <div id="introcov">
+          <h1 id="introhid">Hello! My name is Mason Fisher.<br />I'm a backend web developer.</h1>
+          <h1 id="introtxt"></h1>
+        </div>
+        <p>{% if bday %}<span title="Happy birthday Mason Fisher!">🎂</span> {% endif %}Mason Fisher is a {% if bday %}<span style="color: #ffc0cb;">{{ age }}</span> {% else %}{{ age }}{% endif %} year old student at Gull Lake High School.
+          He was born on Saint Patrick's Day (March 17th) 2004.
+          Mason is a programmer that programs in the Python programming language,
+          which is a powerful and fast programming language which is widely used in the world.</p>
       </div>
-      <p>{% if bday %}<span title="Happy birthday Mason Fisher!">🎂</span> {% endif %}Mason Fisher is a {% if bday %}<span style="color: #ffc0cb;">{{ age }}</span> {% else %}{{ age }}{% endif %} year old student at Gull Lake High School.
-        He was born on Saint Patrick's Day (March 17th) 2004.
-        Mason is a programmer that programs in the Python programming language,
-        which is a powerful and fast programming language which is widely used in the world.</p>
     </div>
-    <div class="main">
+    <div class="container">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie et nisi eu ultrices. Nulla eget elit tincidunt, tincidunt ligula vel, lacinia mi. Nam eget pretium massa. Vivamus justo arcu, mollis nec enim at, hendrerit commodo magna. Pellentesque lorem tortor, volutpat vel tempor ut, maximus id mauris. Mauris id dapibus quam, eget aliquet neque. Pellentesque nec volutpat nibh, eleifend rutrum tellus. Morbi nisl velit, egestas vitae libero suscipit, ultrices faucibus enim. Quisque vulputate libero ut nulla consectetur, nec sollicitudin ligula malesuada. Donec accumsan nec nisl ac condimentum. Phasellus ac velit nisi. In est enim, malesuada eleifend dictum ullamcorper, euismod quis nisl. Aenean vulputate dignissim sem, at consequat elit lobortis in. Proin nunc quam, semper at blandit luctus, tempus vitae justo. Phasellus tempus turpis ac massa blandit egestas. Fusce sit amet est eu sem mollis sodales.
 
 Sed nec eleifend metus. Praesent mollis rhoncus ligula, id iaculis lorem fermentum ac. Maecenas vitae porttitor nisi. Donec vel posuere nisi. Nullam in condimentum metus, ut posuere ligula. Nam orci nisi, convallis venenatis ultrices non, tincidunt nec tortor. Aliquam ullamcorper, est malesuada aliquet accumsan, sapien justo sagittis dui, sed gravida lectus nisl congue massa. Phasellus lacinia posuere lacus, at iaculis augue porta et. Duis in elementum massa, ut elementum risus. Ut arcu purus, pulvinar nec laoreet nec, varius in turpis. Cras efficitur vestibulum accumsan. Integer et facilisis ante, nec lacinia magna. Nullam congue, metus dignissim blandit gravida, justo diam facilisis mi, et cursus tortor diam in diam.

@@ -41,6 +41,7 @@ if DEBUG:
 INSTALLED_APPS = [
     # My apps
     'projects',
+    'mailchat',
 
     # Django Default
     'django.contrib.admin',

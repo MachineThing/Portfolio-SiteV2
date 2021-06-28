@@ -101,7 +101,7 @@ else:
             'NAME': os.getenv('PG_DATABASE'),
             'USER': os.getenv('PG_USER'),
             'PASSWORD': os.getenv('PG_PASSWORD'),
-            'HOST': '127.0.0.1'
+            'HOST': os.getenv('PG_ADDRESS')
         }
     }
 

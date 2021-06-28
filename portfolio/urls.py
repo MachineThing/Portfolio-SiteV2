@@ -9,9 +9,9 @@ import mailchat.urls
 from . import views as pviews
 
 urlpatterns = [
-    path('', projects.views.index, name='home'),
+    path('', pviews.index, name='home'),
     path('favicon.ico', pviews.favicon),
-    path('contribCalImg', projects.views.contribCal),
+    path('contribCalImg', pviews.contribCal),
     path('admin/', admin.site.urls),
     path('projects/', include(projects.urls)),
     path('mail/', include(mailchat.urls))

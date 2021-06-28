@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from .forms import MailForm
 
 def index(request):
-    return render(request, 'mailchat/index.html')
+    if request.POST:
+        pass
+    else:
+        return render(request, 'mailchat/index.html', {'form':MailForm()})

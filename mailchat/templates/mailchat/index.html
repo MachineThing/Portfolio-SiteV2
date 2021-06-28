@@ -9,6 +9,18 @@
   </div>
 </div>
 <div class="container">
-  <p>Send me an email.</p>
+  <form action="{% url 'mail' %}" method="post">
+    {% csrf_token %}
+    <input class="form-control" id="{{ form.email.auto_id }}" type="email" placeholder="Email address" value="">
+    <br />
+    <input class="form-control" id="{{ form.subject.auto_id }}" type="text" placeholder="Subject" value="">
+    <br />
+    <textarea class="form-control" id="{{ form.message.auto_id }}" type="text" placeholder="Message (Minimum 100 characters)" rows="8"></textarea>
+    <br />
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  </form>
 </div>
 {% endblock %}

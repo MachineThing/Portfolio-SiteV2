@@ -9,7 +9,7 @@
 Parameter | Description | Value type
 --- | --- | ---
 SECRET_KEY | [Django Secret Key](https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-SECRET_KEY) | *String*
-GITHUB_KEY | GitHub API key, you can get one [here](GITHUB_KEY="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") | *String*
+GITHUB_KEY | GitHub API key, it needs permissions for *read:user*, you can get one [here](https://github.com/settings/tokens") | *String*
 GITHUB_USER | Username of a GitHub user, used for the "grassgraph" | *String*
 
 ### Database Settings

@@ -4,18 +4,31 @@
 <div class="dblock grass">
   <div class="overlay">
     <div id="introcov">
-      <h1>Email</h1>
+      <h1>Contact</h1>
     </div>
   </div>
 </div>
 <div class="container">
-  <form action="{% url 'mail' %}" method="post">
+  <h2>Please fill in your contact information</h2>
+  <form id="form" action="{% url 'mail' %}" method="post"validate() novalidate>
     {% csrf_token %}
-    <input class="form-control" id="{{ form.email.auto_id }}" type="email" placeholder="Email address" value="">
+    <label for="{{ form.email.auto_id }}">Email address</label>
+    <input class="form-control" id="{{ form.email.auto_id }}" type="email" placeholder="Email address" required value="">
+    <div class="valid-feedback">
+      An email is required.
+    </div>
     <br />
-    <input class="form-control" id="{{ form.subject.auto_id }}" type="text" placeholder="Subject" value="">
+    <label for="{{ form.subject.auto_id }}">Subject</label>
+    <input class="form-control" id="{{ form.subject.auto_id }}" type="text" placeholder="Subject" required value="">
+    <div class="valid-feedback">
+      A subject line is required.
+    </div>
     <br />
-    <textarea class="form-control" id="{{ form.message.auto_id }}" type="text" placeholder="Message (Minimum 100 characters)" rows="8"></textarea>
+    <label for="{{ form.message.auto_id }}">Message</label>
+    <textarea class="form-control" id="{{ form.message.auto_id }}" type="text" placeholder="Message (Minimum 100 characters)" required minlength="100" rows="8"></textarea>
+    <div class="valid-feedback">
+      A message is required and the message has to be 100 characters minimum.
+    </div>
     <br />
 
     <div class="d-flex justify-content-center">
@@ -23,4 +36,8 @@
     </div>
   </form>
 </div>
+{% endblock %}
+{% block 'scripts' %}
+<script src="{% static 'form.js' %}"></script>
+<script>validate()</script>
 {% endblock %}

@@ -3,16 +3,16 @@ from . import widgets
 
 class CharField(fields.CharField):
     widget = None
-    def __init__(self, br=True, big=False, label='', **kwargs):
+    def __init__(self, br=True, big=False, label='', attrs=None, **kwargs):
         self.br = br
         self.big = big
         self.label = label
         if big and self.widget == None:
-            self.widget = widgets.TextArea(label, br)
+            self.widget = widgets.TextArea(label, br, attrs)
         elif self.widget == None:
-            self.widget = widgets.TextInput(label, br)
+            self.widget = widgets.TextInput(label, br, attrs)
         else:
-            self.widget = self.widget(label, br)
+            self.widget = self.widget(label, br, attrs)
 
         kwargs['label'] = ''
         super().__init__(**kwargs)

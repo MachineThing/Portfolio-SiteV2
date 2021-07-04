@@ -7,7 +7,8 @@ class TextInput(DjangoInput):
 
     def __init__(self, label='', br=True, attrs=None, **kwargs):
         self.label = label
-        self.br = br
+        if not hasattr(self, 'br'):
+            self.br = br
         super().__init__(attrs)
 
     def get_context(self, name, value, attrs):

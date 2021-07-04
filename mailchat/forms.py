@@ -1,5 +1,5 @@
 from django.forms import Form
-from . import widgets, fields
+from . import fields
 
 class MailForm(Form):
     name = fields.CharField(label='Name:')

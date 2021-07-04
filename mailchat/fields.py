@@ -1,5 +1,6 @@
 from django.forms import fields
 from . import widgets
+import country_list
 
 class CharField(fields.CharField):
     widget = None
@@ -19,6 +20,14 @@ class CharField(fields.CharField):
 
 class EmailField(CharField):
     widget = widgets.EmailInput
+
+class SelectField(fields.ChoiceField):
+    widget = None
+
+    def __init__(self, choices, label='', attrs=None, **kwargs):
+        self.widget = widgets.SelectInput(choices, label, attrs, **kwargs)
+        kwargs['label'] = ''
+        super().__init__(**kwargs)
 
 class captchaField(fields.FloatField):
     widget = widgets.HiddenInput

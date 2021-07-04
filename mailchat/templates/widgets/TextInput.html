@@ -1,4 +1,4 @@
-<br />
+{% if widget.br %}<br />{% endif %}
+<p style="line-height: 0;">{{ widget.label }}</p>
 <{{ widget.tag }} class="form-control" name="{{ widget.name }}" type="{{ widget.type }}"{% include "django/forms/widgets/attrs.html" %}>
 {% if widget.value %}{{ widget.value }}{% endif %}</{{ widget.tag }}>
-<br />

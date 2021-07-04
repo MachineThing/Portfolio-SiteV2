@@ -1,9 +1,11 @@
-from . import widgets
-from django import forms
+from django.forms import Form
+from . import widgets, fields
 
-class MailForm(forms.Form):
-    email = forms.EmailField(widget=widgets.bEmailInput)
-    subject = forms.CharField(widget=widgets.bTextInput)
-    message = forms.CharField(min_length=100, widget=widgets.bTextArea)
+class MailForm(Form):
+    name = fields.CharField(label='Name:')
+    company = fields.CharField(label='School/Company:')
+    email = fields.EmailField(label='Email address:')
+    subject = fields.CharField(label='Subject:')
+    message = fields.CharField(min_length=100, big=True, label='Message:')
     # TODO: Make captcha_score actually get a recaptchaV3 score
-    captcha_score = forms.FloatField(min_value=0, max_value=1, required=False, widget=widgets.bHiddenInput, label='')
+    captcha_score = fields.captchaField(required=False)

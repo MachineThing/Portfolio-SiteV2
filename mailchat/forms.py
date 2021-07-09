@@ -35,9 +35,11 @@ class MailForm(Form):
 
     def save(self):
         data = self.cleaned_data
-        model = Email.objects.create()
+        data['captcha_score'] = 0.71 # Temp
+        model = Email()
         model.verified = False
         model.sendee = data['email']
+        model.sending_date = datetime.now()
         if data['captcha_score'] > 1 or data['captcha_score'] < 0:
             model.captcha_score = 0.0 # Sets the captcha_score to 0 if the score is fishy
         else:
@@ -55,4 +57,5 @@ Captcha Score: {}
 Subject: {}
 
 {}
-""".format(self.sendee, self.sending_date, data['company'], data['name'], data['country'], self.captcha_score, data['subject'], data['message'])
+""".format(data['email'], model.sending_date, data['company'], data['name'], data['country'], model.captcha_score, data['subject'], data['message'])
+        model.save()

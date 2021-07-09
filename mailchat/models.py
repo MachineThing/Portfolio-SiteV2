@@ -4,7 +4,7 @@ class Email(models.Model):
     sendee = models.EmailField()
     sending_date = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
-    captcha_score = models.FloatField()
+    captcha_score = models.FloatField(null=True)
     verify_url = models.CharField(max_length=15)
     verified = models.BooleanField()
 

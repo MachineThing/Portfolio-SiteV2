@@ -11,7 +11,8 @@ def index(request):
             return render(request, 'mailchat/index.html', {'form':MailForm(), 'error':'The email cannot be sent due to an invalid form'})
         else:
             try:
-                send_mail(form.cleaned_data['subject'], form.cleaned_data['message'], 'test@example.com', [form.cleaned_data['email']])
+                form.save()
+                #send_mail(form.cleaned_data['subject'], form.cleaned_data['message'], 'test@example.com', [form.cleaned_data['email']])
                 return render(request, 'mailchat/index.html', {'form':MailForm(), 'success':'Your email has been sent!'})
             except SMTPException:
                 return render(request, 'mailchat/index.html', {'form':MailForm(), 'error':'The email cannot be sent due to an invalid email'})

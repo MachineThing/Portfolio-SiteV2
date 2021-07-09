@@ -1,7 +1,10 @@
+from datetime import datetime
 from django.forms import Form
+from django.utils.crypto import get_random_string
 from unidecode import unidecode
 import country_list
 from . import fields
+from .models import Email
 
 def return_countries():
     countries = country_list.countries_for_language('EN')[:] # Copy the list to avoid modifying the master list
@@ -29,3 +32,27 @@ class MailForm(Form):
     message = fields.CharField(min_length=100, big=True, label='Message:', attrs={'rows':3})
     # TODO: Make captcha_score actually get a recaptchaV3 score
     captcha_score = fields.captchaField(required=False)
+
+    def save(self):
+        data = self.cleaned_data
+        model = Email.objects.create()
+        model.verified = False
+        model.sendee = data['email']
+        if data['captcha_score'] > 1 or data['captcha_score'] < 0:
+            model.captcha_score = 0.0 # Sets the captcha_score to 0 if the score is fishy
+        else:
+            model.captcha_score = round(data['captcha_score'], 2)
+        model.verify_url = get_random_string(15)
+        model.message = """---Header Start---
+Sendee: {}
+Sending Date: {}
+Company: {}
+Name: {}
+Country: {}
+Captcha Score: {}
+--- Header End ---
+
+Subject: {}
+
+{}
+""".format(self.sendee, self.sending_date, data['company'], data['name'], data['country'], self.captcha_score, data['subject'], data['message'])

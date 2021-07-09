@@ -28,6 +28,7 @@ class SelectField(fields.ChoiceField):
         self.widget = widgets.SelectInput(choices, label, attrs, **kwargs)
         kwargs['label'] = ''
         super().__init__(**kwargs)
+        self.choices = choices
 
 class captchaField(fields.FloatField):
     widget = widgets.HiddenInput
@@ -37,9 +38,12 @@ class captchaField(fields.FloatField):
         super().__init__(**kwargs)
 
     def to_python(self, value):
-        if value > 1:
-            return 1.0
-        elif value < 0:
-            return 0.0
-        else:
-            return float(value)
+        try:
+            if float(value) > 1:
+                return 1.0
+            elif float(value) < 0:
+                return 0.0
+            else:
+                return float(value)
+        except ValueError:
+            return None

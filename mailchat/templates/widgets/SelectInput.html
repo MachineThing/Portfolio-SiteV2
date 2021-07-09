@@ -3,6 +3,7 @@
   <label for="{{ widget.name }}" class="col-md-3 col-lg-2 col-form-label">{{ widget.label }}</label>
   <div class="col-md-9 col-lg-10">
     <select name="{{ widget.name }}" class="form-control"{% include "django/forms/widgets/attrs.html" %}>
+      <option value="" selected disabled hidden>Please select a country</option>
       {% for choice in widget.options %}<option value="{{ choice.key }}">{{ choice.value }}</option>{% endfor %}
     </select>
   </div>

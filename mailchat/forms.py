@@ -59,3 +59,4 @@ Subject: {}
 {}
 """.format(data['email'], model.sending_date, data['company'], data['name'], data['country'], model.captcha_score, data['subject'], data['message'])
         model.save()
+        return model.verify_url

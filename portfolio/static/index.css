@@ -32,6 +32,13 @@ html, body {
   text-align: left;
 }
 
+.socialMedia {
+  width: 32px;
+  height: 32px;
+  margin: 0px;
+  display: inline;
+}
+
 #introcov {
   position: relative;
   font-size: min(3em, 10vw);
@@ -49,4 +56,10 @@ html, body {
   position: absolute;
   transform: translate(0, -110%);
   overflow: visible;
+}
+
+#masonImage {
+  height: 100px;
+  float: right;
+  border-radius: 50%;
 }

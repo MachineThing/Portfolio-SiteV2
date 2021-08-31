@@ -1,8 +1,9 @@
 from django.views.generic.base import RedirectView
-from portfolio.gen.grass import grass as gengrass
+from portfolio.extra.grass import grass as gengrass
 from datetime import datetime, timedelta
+from portfolio.extra.render import render
+from projects.models import StaticPage
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.conf import settings
 import pytz
 
@@ -15,6 +16,13 @@ def index(request):
     bday = (today_date.month, today_date.day) == (birth_date.month, birth_date.day)
 
     return render(request, 'projects/index.html', {'age':age, 'bday':bday})
+
+def staticpage(request, pagename):
+    page = StaticPage.objects.filter(html_safe_name__contains=pagename)[0]
+    html = open(page.html.path)
+    htmlfile = html.read()
+    html.close()
+    return HttpResponse(htmlfile)
 
 def contribCal(request):
     timezone = pytz.timezone(settings.TIME_ZONE)

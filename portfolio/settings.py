@@ -86,6 +86,8 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 if os.getenv('USE_SQLITE') == 'true' and DEBUG:
     # Only use for testing!
     DATABASES = {

@@ -14,5 +14,6 @@ urlpatterns = [
     path('contribCalImg', pviews.contribCal),
     path('admin/', admin.site.urls),
     path('projects/', include(projects.urls)),
+    path('staticpage/<str:pagename>', pviews.staticpage, name='home'),
     path('mail/', include(mailchat.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,7 @@
 from django.contrib import admin
 # Models
-from projects.models import GrassGraph
+from projects import models
 
-admin.site.register(GrassGraph)
+admin.site.register(models.GrassGraph)
+admin.site.register(models.NavBar)
+admin.site.register(models.StaticPage)

@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.shortcuts import render
+from portfolio.extra.render import render
 from django.template.loader import render_to_string
 from smtplib import SMTPException
 from .forms import MailForm

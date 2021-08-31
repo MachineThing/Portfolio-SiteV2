@@ -18,11 +18,18 @@ def index(request):
     return render(request, 'projects/index.html', {'age':age, 'bday':bday})
 
 def staticpage(request, pagename):
-    page = StaticPage.objects.filter(html_safe_name__contains=pagename)[0]
+    try:
+        page = StaticPage.objects.filter(html_safe_name__contains=pagename)[0]
+    except IndexError:
+        # TODO: I should return a 404 page
+        raise Exception('TODO: I should return a 404 page')
     html = open(page.html.path)
     htmlfile = html.read()
     html.close()
-    return HttpResponse(htmlfile)
+    if page.template:
+        return render(request, 'projects/static.html', {'staticpage':htmlfile})
+    else:
+        return HttpResponse(htmlfile)
 
 def contribCal(request):
     timezone = pytz.timezone(settings.TIME_ZONE)

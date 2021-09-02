@@ -17,9 +17,10 @@
   {% endif %}
 
   <h2>Please fill in your contact information</h2>
-  <form id="form" action="{% url 'mail' %}" method="post"validate() novalidate>
+  <form id="form" action="" method="post"validate() novalidate>
     {% csrf_token %}
     {{ form }}
+    <input type="hidden" id="captcha_score" name="captcha_score">
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">Send</button>
     </div>
@@ -28,5 +29,12 @@
 {% endblock %}
 {% block 'scripts' %}
 <script src="{% static 'form.js' %}"></script>
-<script>validate()</script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_public }}"></script>
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('{{ recaptcha_public }}', {action: "{% url 'mail' %}"}).then(function(token) {
+      document.getElementById('captcha_score').value = token;
+    });
+  });
+</script>
 {% endblock %}

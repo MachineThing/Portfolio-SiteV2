@@ -126,6 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# reCAPTCHA settings
+RECAPTCHA_PUBLIC_KEY = os.getenv('CAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('CAPTCHA_SECRET_KEY')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

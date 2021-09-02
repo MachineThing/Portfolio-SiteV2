@@ -29,21 +29,18 @@ class MailForm(Form):
     country = fields.SelectField(label='Country:', choices=return_countries())
     email = fields.EmailField(label='Email address:')
     subject = fields.CharField(label='Subject:')
-    message = fields.CharField(min_length=100, big=True, label='Message:', attrs={'rows':3})
-    # TODO: Make captcha_score actually get a recaptchaV3 score
-    captcha_score = fields.captchaField(required=False)
+    message = fields.CharField(big=True, label='Message:', attrs={'rows':3})
 
-    def save(self):
+    def save(self, captcha_score):
         data = self.cleaned_data
-        data['captcha_score'] = 0.71 # Temp
         model = Email()
         model.verified = False
         model.sendee = data['email']
         model.sending_date = datetime.now()
-        if data['captcha_score'] > 1 or data['captcha_score'] < 0:
+        if captcha_score > 1 or captcha_score < 0:
             model.captcha_score = 0.0 # Sets the captcha_score to 0 if the score is fishy
         else:
-            model.captcha_score = round(data['captcha_score'], 2)
+            model.captcha_score = round(captcha_score, 2)
         model.verify_url = get_random_string(15)
         model.message = """---Header Start---
 Sendee: {}

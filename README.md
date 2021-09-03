@@ -10,7 +10,8 @@ Parameter | Description | Value type
 --- | --- | ---
 SECRET_KEY | [Django Secret Key](https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-SECRET_KEY) | *String*
 GITHUB_KEY | GitHub API key, it needs permissions for *read:user*, you can get one [here](https://github.com/settings/tokens") | *String*
-GITHUB_USER | Username of a GitHub user, used for the "grassgraph" | *String*
+CAPTCHA_SECRET_KEY | reCAPTCHA secret key, you can get one [here](https://www.google.com/recaptcha/admin/create) | *String*
+CAPTCHA_PUBLIC_KEY | reCAPTCHA site key, you can get one [here](https://www.google.com/recaptcha/admin/create) | *String*
 
 ### Database Settings
 Parameter | Description | Value type

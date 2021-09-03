@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="dblock grass">
+  <div class="overlay">
+    <div id="introcov">
+      <h1>Contact</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  {% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+  {% endif %}
+  {% if success %}
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+  {% endif %}
+
+  <div class="alert alert-{{ type }}" role="alert">{{ message }}</div>
+</div>
+{% endblock %}

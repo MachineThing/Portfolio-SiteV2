@@ -4,6 +4,7 @@ from portfolio.extra.render import render
 from django.template.loader import render_to_string
 from django.conf import settings
 from smtplib import SMTPException
+from .captcha import CaptchaError
 from .captcha import captcha
 from .forms import MailForm
 from .models import Email
@@ -22,12 +23,16 @@ def index(request):
             return render(request, 'mailchat/index.html', base_context)
         else:
             try:
-                score = captcha(captcha_id)
-                verify = form.save(score)
+                try:
+                    score = captcha(captcha_id)
+                except CaptchaError as err:
+                    base_context['error'] = err.message
+                    return render(request, 'mailchat/index.html', base_context)
+                email_object = form.save(score)
                 send_mail(
                     subject = 'Verify your email',
-                    message = f'You can verify your email at www.masonfisher.net/mail/verify?v={verify.verify_id}\nIf you received this email in error, you can simply ignore it. Please do not reply to this email!',
-                    html_message = render_to_string('mailchat/verify_mail.html', {'verify_url':'www.masonfisher.net/mail?v={}'.format(verify)}),
+                    message = f'You can verify your email at www.masonfisher.net/mail/verify?v={email_object.verify_url}\nIf you received this email in error, you can simply ignore it. Please do not reply to this email!',
+                    html_message = render_to_string('mailchat/verify_mail.html', {'verify_url':'https://www.masonfisher.net/verifymail?v={}'.format(email_object.verify_url)}),
                     from_email = 'noreply@masonfisher.net',
                     recipient_list = [form.cleaned_data['email']],
                     fail_silently = False)

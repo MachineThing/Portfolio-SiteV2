@@ -20,6 +20,7 @@
   <form id="form" action="" method="post"validate() novalidate>
     {% csrf_token %}
     {{ form }}
+    <br />
     <input type="hidden" id="captcha_score" name="captcha_score">
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">Send</button>

@@ -47,7 +47,7 @@ def captcha(response):
     result = result_raw.json() # https://developers.google.com/recaptcha/docs/verify#api-response
 
     if result['success']:
-        return result['score']
+        return float(result['score'])
     else:
         try:
             if len(result['error-codes']) > 1:

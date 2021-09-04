@@ -28,15 +28,18 @@ def index(request):
                 except CaptchaError as err:
                     base_context['error'] = err.message
                     return render(request, 'mailchat/index.html', base_context)
-                email_object = form.save(score)
-                send_mail(
-                    subject = 'Verify your email',
-                    message = f'You can verify your email at www.masonfisher.net/mail/verify?v={email_object.verify_url}\nIf you received this email in error, you can simply ignore it. Please do not reply to this email!',
-                    html_message = render_to_string('mailchat/verify_mail.html', {'verify_url':'https://www.masonfisher.net/verifymail?v={}'.format(email_object.verify_url)}),
-                    from_email = 'noreply@masonfisher.net',
-                    recipient_list = [form.cleaned_data['email']],
-                    fail_silently = False)
-                base_context['success'] = 'Please check your email for a verification email.'
+                if score > 0.3:
+                    email_object = form.save(score)
+                    send_mail( # Mail to user (verification)
+                        subject = 'Verify your email',
+                        message = f'You can verify your email at www.masonfisher.net/mail/verify?v={email_object.verify_url}\nIf you received this email in error, you can simply ignore it. Please do not reply to this email!',
+                        html_message = render_to_string('mailchat/verify_mail.html', {'verify_url':'https://www.masonfisher.net/verifymail?v={}'.format(email_object.verify_url)}),
+                        from_email = 'noreply@masonfisher.net',
+                        recipient_list = [form.cleaned_data['email']],
+                        fail_silently = False)
+                    base_context['success'] = 'Please check your email for a verification email.'
+                else:
+                    base_context['error'] = 'Bots are not allowed! If this is a mistake please try again.'
                 return render(request, 'mailchat/index.html', base_context)
             except SMTPException:
                 base_context['error'] = 'The email cannot be sent due to an invalid email'
@@ -54,7 +57,7 @@ def verify(request):
             return render(request, 'mailchat/verified.html', {'type':'danger', 'message':'Your verification has expired.'})
         else:
             email = email[0]
-            send_mail(
+            send_mail( # Mail to Mason
                 subject = f'Email from {email.sendee}',
                 message = email.message,
                 from_email = 'postoffice@masonfisher.net',

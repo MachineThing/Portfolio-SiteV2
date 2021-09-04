@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from portfolio.extra.render import render
 
-# Projects app views go here
+def index(request):
+    return render(request, 'projects/index.html', {})

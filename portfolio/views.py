@@ -15,7 +15,7 @@ def index(request):
 
     bday = (today_date.month, today_date.day) == (birth_date.month, birth_date.day)
 
-    return render(request, 'projects/index.html', {'age':age, 'bday':bday})
+    return render(request, 'home/index.html', {'age':age, 'bday':bday})
 
 def staticpage(request, pagename):
     try:
@@ -27,7 +27,7 @@ def staticpage(request, pagename):
     htmlfile = html.read()
     html.close()
     if page.template:
-        return render(request, 'projects/static.html', {'staticpage':htmlfile})
+        return render(request, 'home/static.html', {'staticpage':htmlfile})
     else:
         return HttpResponse(htmlfile)
 

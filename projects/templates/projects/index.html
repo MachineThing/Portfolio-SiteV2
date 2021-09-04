@@ -9,6 +9,14 @@
   </div>
 </div>
 <div class="container">
-  <p>Note: This website is still a work in progress, please note some things may not work right now. Apologies for any inconviences.</p>
+  {% for project in projects %}
+  <div class="card bg-dark text-white">
+    <img class="card-img-top" src="{{ project.image.url }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ project.name }}</h5>
+      <p class="card-text">{{ project.description }}</p>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

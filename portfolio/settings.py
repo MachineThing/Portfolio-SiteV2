@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'projects',
     'mailchat',
 
+    # Packages
+    'colorfield',
+
     # Django Default
     'django.contrib.admin',
     'django.contrib.auth',

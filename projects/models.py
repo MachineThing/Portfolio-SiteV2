@@ -1,5 +1,8 @@
-from datetime import datetime
 from django.db import models
+from colorfield.fields import ColorField
+from datetime import datetime
+
+# Base site
 
 class GGManager(models.Manager):
     def create_grass(self, data):
@@ -16,6 +19,8 @@ class GrassGraph(models.Model):
 
     def __str__(self):
         return f"Grass Graph - {self.year}_{self.week}"
+
+# Static pages
 
 class NavBar(models.Model):
     name = models.CharField(max_length=25)
@@ -38,3 +43,30 @@ class StaticPage(models.Model):
     def delete(self):
         html.delete()
         super(Product, self).delete()
+
+# Projects
+
+class ProjectTag(models.Model):
+    name = models.CharField(max_length=15)
+    description = models.CharField(max_length=150)
+    color = ColorField(default='#FFFFFF')
+    text_color = ColorField(default='#000000')
+
+    def __str__(self):
+        return f"\"{self.name}\" tag"
+
+class Project(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=150)
+    repository = models.CharField(max_length=50, blank=True, null=True)
+    link = models.CharField(max_length=50, blank=True, null=True)
+    image = models.ImageField(upload_to='project/')
+    tags = models.ManyToManyField(ProjectTag)
+    featured = models.BooleanField(default=False)
+    hidden = models.BooleanField(default=False)
+
+    def __str__(self):
+        if self.featured:
+            return f"\"{self.name}\" featured project"
+        else:
+            return f"\"{self.name}\" project"

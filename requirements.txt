@@ -6,3 +6,4 @@ Pillow
 pytz
 country_list
 unidecode
+django-colorfield

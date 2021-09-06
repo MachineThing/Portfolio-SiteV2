@@ -57,7 +57,8 @@ class ProjectTag(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=150)
+    brief = models.TextField(max_length=150)
+    description = models.TextField(max_length=1000, null=True)
     repository = models.CharField(max_length=50, blank=True, null=True)
     link = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='project/')

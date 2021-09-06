@@ -40,6 +40,10 @@ html, body {
   display: inline;
 }
 
+.card {
+  padding: 0px;
+}
+
 #introcov {
   position: relative;
   font-size: min(3em, 10vw);

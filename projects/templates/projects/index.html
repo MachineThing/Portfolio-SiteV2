@@ -9,14 +9,17 @@
   </div>
 </div>
 <div class="container">
-  {% for project in projects %}
-  <div class="card bg-dark text-white">
-    <img class="card-img-top" src="{{ project.image.url }}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ project.name }}</h5>
-      <p class="card-text">{{ project.description }}</p>
+  <div class="row justify-content-center">
+    {% for project in projects %}
+    <div class="card bg-dark text-white" style="width: 18rem; margin: 10px;">
+      <img class="card-img-top" src="{{ project.image.url }}" style="width: 100%; object-fit: cover;" alt="Image of {{ project.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ project.name }}</h5>
+        <p class="card-text">{{ project.brief }}</p>
+        <a href="#" class="btn btn-primary">View project</a>
+      </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 {% endblock %}
